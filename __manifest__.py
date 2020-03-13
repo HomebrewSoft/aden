@@ -5,7 +5,7 @@
     'author': 'HomebrewSoft',
     'website': 'https://github.com/HomebrewSoft/aden',
     'depends': [
-        'fecr'
+        'account',
     ],
     'data': [
         # security
