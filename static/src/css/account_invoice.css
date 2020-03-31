@@ -1,0 +1,26 @@
+
+.invoice_info {
+    width: 66%;
+    text-align: right;
+}
+
+.logo-img {
+    width: 400px;
+}
+
+.invoice_info > .title {
+    color: #0087C3;
+    background-color: red;
+}
+
+.invoice_info > .electronic_invoice {
+    font-weight: bold;
+}
+
+.invoice_info > .extra_info > h3 {
+    font-size: medium;
+}
+
+.companies_info {
+    background-color: blue;
+}

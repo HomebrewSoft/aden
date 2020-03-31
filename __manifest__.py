@@ -6,6 +6,7 @@
     'website': 'https://github.com/HomebrewSoft/aden',
     'depends': [
         'account',
+        'fecr',
     ],
     'data': [
         # security

@@ -1,10 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+
     <template id="web.external_layout_boxed">
         <div class="header o_boxed_header">
             <div class="row mb8">
                 <div class="col-xs-6">
-                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"/>
+                    <link href="/aden/static/src/css/account_invoice.css" rel="stylesheet"/>
+                    <div class="logo">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"/>
+                    </div>
+                    <div clas="invoice_info">
+                        <div class="title">
+                            <div>
+                                <h2>
+                                    Factura Electrónica #
+                                    <span t-field="o.number"/>
+                                </h2>
+                            </div>
+                            <div>
+                                Ver.
+                                <!-- TODO -->
+                                4.3
+                            </div>
+                        </div>
+                        <div class="electronic_invoice">
+                            <div>
+                                Número Consecutivo:
+                                <span t-field="o.number_electronic"/>
+                            </div>
+                            <div>
+                                Clave:
+                                <span t-field="o.number_electronic"/>
+                            </div>
+                        </div>
+                        <div class="extra_info">
+                            <div>
+                                <span>Tipo Cambio:</span>
+                                <!-- TODO -->
+                            </div>
+                            <div>
+                                <span>Fecha de Facturación:</span>
+                                <span t-field="o.date_invoice"/>
+                            </div>
+                            <div>
+                                <span>Fecha de Vencimiento:</span>
+                                <span t-field="o.date_due"/>
+                            </div>
+                            <div>
+                                <span>Condición de Venta:</span>
+                                <span t-field="o.payment_term_id"/>
+                            </div>
+                            <div>
+                                <span>Medio de Pago:</span>
+                                <span t-field="o.payment_methods_id"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -13,7 +64,9 @@
             <t t-raw="0"/>
         </div>
 
-        <div class="footer o_boxed_footer"></div>
+        <div class="footer o_boxed_footer">
+            Emitida conforme lo establecido en la resolución de Facturación Electrónica, N° DGT-R-033-2019 del 20 de junio del dos mil diecinueve de la Dirección General de Tributación
+        </div>
     </template>
 
     <template id="aden_report_invoice_document" inherit_id="account.report_invoice_document">
@@ -24,7 +77,165 @@
                         <table/>
                     </div>
                 </div>
-                <div class="page"></div>
+                <div class="page">
+                    <div>
+                        <div>
+                            <div>
+                                <bold>Emisor:</bold>
+                                <span t-field="o.company_id"/>
+                            </div>
+                            <div>
+                                <bold>Razón Social:</bold>
+                                <span t-field="o.company_id.commercial_name"/>
+                            </div>
+                            <div>
+                                <bold>Cédula:</bold>
+                                <span t-field="o.company_id.vat"/>
+                            </div>
+                            <div>
+                                <bold>Teléfono:</bold>
+                                <span t-field="o.company_id.phone"/>
+                            </div>
+                            <div>
+                                <bold>Correo Eléctronico:</bold>
+                                <span t-field="o.company_id.email"/>
+                            </div>
+                            <div>
+                                <bold>Dirección:</bold>
+                                <span t-field="o.company_id.street"/>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <bold>Receptor:</bold>
+                                <span t-field="o.partner_id"/>
+                            </div>
+                            <div>
+                                <bold>Nombre Comercial:</bold>
+                                <span t-field="o.partner_id.commercial_name"/>
+                            </div>
+                            <div>
+                                <bold>Cédula:</bold>
+                                <span t-field="o.partner_id.vat"/>
+                            </div>
+                            <div>
+                                <bold>Teléfono:</bold>
+                                <span t-field="o.partner_id.phone"/>
+                            </div>
+                            <div>
+                                <bold>Correo Eléctronico:</bold>
+                                <span t-field="o.partner_id.email"/>
+                            </div>
+                            <div>
+                                <bold>Dirección:</bold>
+                                <span t-field="o.partner_id.street"/>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- TODO QR -->
+                        </div>
+                    </div>
+                    <div>
+                        <!-- TODO TABLA IBAN -->
+                    </div>
+                    <div>
+                        <span>Detalles de la Factura</span>
+                        <table>
+                            <tr>
+                                <th>Cod</th>
+                                <th>Item</th>
+                                <th>Detalle</th>
+                                <th>Und</th>
+                                <th class="number">Cant</th>
+                                <th class="number">$ Precio</th>
+                                <th class="number">$ Monto Total</th>
+                                <th class="number">$ Sub-Total</th>
+                                <th class="number">$ IVA</th>
+                                <th class="number">$ Total</th>
+                            </tr>
+                            <t t-foreach="o.invoice_line_ids" t-as="line">
+                                <tr>
+                                    <td>
+                                        <span t-field="line.product_id.default_code"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.product_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <!-- TODO -->
+                                    <td>
+                                        <span t-field="line.product_id.uom_id"/>
+                                    </td>
+                                    <td class="number">
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td class="number">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <!-- TODO -->
+                                    <td class="number"/>
+                                    <td class="number">
+                                        <span t-field="line.price_subtotal"/>
+                                    </td>
+                                    <!-- TODO -->
+                                    <td class="number"/>
+                                    <!-- TODO -->
+                                    <td class="number"/>
+                                </tr>
+                            </t>
+                        </table>
+                        <div>
+                            <table>
+                                <tr>
+                                    <th>Total Venta</th>
+                                    <td>
+                                        <span t-field="o.amount_untaxed"/>
+                                    </td>
+                                </tr>
+                                <!-- TODO -->
+                                <tr>
+                                    <th>Descuento</th>
+                                    <td/>
+                                </tr>
+                                <!-- TODO -->
+                                <tr>
+                                    <th>Sub-Total</th>
+                                    <td/>
+                                </tr>
+                                <tr>
+                                    <th>Total IVA</th>
+                                    <td>
+                                        <span t-field="o.amount_tax"/>
+                                    </td>
+                                </tr>
+                                <div>
+                                    <tr>
+                                        <th>Total</th>
+                                        <td>
+                                            <span t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>Detalles:</div>
+                            <!-- TODO -->
+                        </div>
+                        <div>
+                            <bold>Total CRC:</bold>
+                            <!-- TODO -->
+                        </div>
+                        <div>
+                            Monto en Letras
+                            <!-- TODO -->
+                        </div>
+                    </div>
+                </div>
             </t>
         </t>
     </template>
