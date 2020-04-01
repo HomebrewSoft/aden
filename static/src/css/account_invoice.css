@@ -24,3 +24,49 @@
 .companies_info {
     background-color: blue;
 }
+
+.contact_header {
+    width: 100%;
+}
+
+.contact_info {
+    float: left;
+    width: 45%;
+    border-left: thick solid #0087C3;
+}
+
+.qr {
+    float: left;
+    width: 10%;
+    background-color: black;
+}
+
+.details {
+    text-align: center;
+    width: 100%;
+}
+
+.details > h3 {
+    font-weight: bold;
+    color: #555555;
+}
+
+.details > table {
+    width: 100%;
+    border: none;
+}
+
+.invoice_lines {
+    text-align: center;
+    background-color: #EEEEEE;
+}
+
+tr {
+    border-bottom: thick solid white;
+}
+
+
+td {
+    vertical-align: middle;
+    border: none !important;
+}
