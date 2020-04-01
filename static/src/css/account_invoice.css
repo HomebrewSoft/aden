@@ -1,24 +1,52 @@
-
 .invoice_info {
-    width: 66%;
     text-align: right;
+    float: right;
+    width: 70%;
 }
 
-.logo-img {
-    width: 400px;
+.header-container {
+    border-bottom: none;
+    width: 100%;
 }
 
-.invoice_info > .title {
-    color: #0087C3;
-    background-color: red;
+.logo2 {
+    width: 29%;
+    height: 200px;
+    float: left;
+    vertical-align: middle;
+    text-align: center ;
+}
+
+
+.title {
+    font-size: 20px;
+}
+
+.title > div > h2 {
+    font-size: 20px;
+    margin-bottom: 0px;
+    margin-top: 5px;
 }
 
 .invoice_info > .electronic_invoice {
     font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
-.invoice_info > .extra_info > h3 {
-    font-size: medium;
+.extra_info {
+    color: #777777;
+    font-size: 12px;
+}
+
+.extra_info > .bold {
+    font-weight: bold;
+    display: inline-block;
+}
+
+.extra_info > span {
+    display: inline-block;
 }
 
 .companies_info {
@@ -26,22 +54,49 @@
 }
 
 .contact_header {
+    padding-top: 20px;
+    border-top: 3px solid #AAAAAA;
     width: 100%;
+}
+
+.border-left {
+    border-left: thick solid #0087C3;
+    padding-left: 5px;
 }
 
 .contact_info {
     float: left;
     width: 45%;
-    border-left: thick solid #0087C3;
+    font-size: 13px;
+}
+
+.contact_info > div > .bold {
+    font-weight: bold;
+    display: inline-block;
+}
+
+.blue {
+    color: #0087C3;
+}
+
+.contact_info > div > span {
+    display: inline-block;
 }
 
 .qr {
     float: left;
     width: 10%;
-    background-color: black;
+    vertical-align: middle;
+}
+
+.qr > img {
+    left: 50%;
+    right: 50%;
+    width: 60%;
 }
 
 .details {
+    padding-top: 250px;
     text-align: center;
     width: 100%;
 }
@@ -56,17 +111,69 @@
     border: none;
 }
 
+.invoice_lines tr td,th {
+    padding: 2px 10px 2px 10px;
+}
+
 .invoice_lines {
     text-align: center;
     background-color: #EEEEEE;
 }
 
 tr {
-    border-bottom: thick solid white;
+    border-bottom: 1px solid white;
 }
 
+.number {
+    text-align: right;
+}
+
+.total-col {
+    background: #8EC9E5 !important;
+}
+
+table > tr > td:last-element {
+    background: #8EC9E5 !important;
+}
 
 td {
     vertical-align: middle;
     border: none !important;
+}
+
+.resume {
+    width: 100%;
+    text-align: right;
+    display: inline-block;
+}
+
+.resume > table {
+    border: none;
+    float: right;
+    font-size: 15px;
+}
+
+.resume table tr {
+    border-bottom: 1px solid black !important;
+}
+.resume table tr:last-of-type {
+    border-top: 2px solid #0087C3 !important;
+    border-bottom: 2px solid #0087C3 !important;
+    color: #0087C3;
+}
+
+.resume table tr th {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 5px 30px 5px 30px;
+}
+
+.resume table tr td {
+    padding: 5px 30px 5px 30px;
+    background-color: white !important;
+}
+
+.bottom-info > div{
+    font-size: 15px;
+    margin: 10px 0 10px 0;
 }

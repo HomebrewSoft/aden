@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <template id="web.external_layout_boxed">
+        <div class="header o_boxed_header">
+            <div class="header-container">
+                <link href="/aden/static/src/css/account_invoice.css" rel="stylesheet"/>
+                <style type="text/css">
+                    .logo23 {
+                        background-image: url("/web/binary/company_logo");
+                        background-repeat: no-repeat;
+                    }
+                </style>
+                <div class="logo2 logo23"/>
+                <div class="invoice_info">
+                    <div class="title blue">
+                        <div>
+                            <h2>
+                                Factura Electrónica #
+                                <span t-field="o.number"/>
+                            </h2>
+                        </div>
+                        <div>
+                            Ver.
+                            <span t-field="o.company_id.version_hacienda"/>
+                        </div>
+                    </div>
+                    <div class="electronic_invoice">
+                        Número Consecutivo:
+                        <!-- TODO -->
+                        <span t-field="o.consecutive_number_receiver"/>
+                    </div>
+                    <div class="electronic_invoice">
+                        Clave:
+                        <span t-field="o.number_electronic"/>
+                    </div>
+                    <div>
+                        <div class="extra_info">
+                            <div class="bold">Tipo Cambio:</div>
+                            Compra:
+                            <span t-field="o.rate_id.original_rate_2"/>
+                            Venta
+                            <span t-field="o.rate_id.original_rate"/>
+                        </div>
+                        <div class="extra_info">
+                            <div class="bold">Fecha de Facturación:</div>
+                            <span t-field="o.date_invoice"/>
+                        </div>
+                        <div class="extra_info">
+                            <div class="bold">Fecha de Vencimiento:</div>
+                            <span t-field="o.date_due"/>
+                        </div>
+                        <div class="extra_info">
+                            <div class="bold">Condición de Venta:</div>
+                            <span t-field="o.payment_term_id"/>
+                        </div>
+                        <div class="extra_info">
+                            <div class="bold">Medio de Pago:</div>
+                            <span t-field="o.payment_methods_id"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article o_report_layout_boxed">
+            <t t-raw="0"/>
+        </div>
+
+        <div class="footer o_boxed_footer"></div>
+    </template>
 
     <template id="aden_report_invoice_document" inherit_id="account.report_invoice_document">
         <t t-call="web.external_layout" position="replace">
@@ -9,113 +77,58 @@
                         <table/>
                     </div>
                 </div>
-                <div class="header">
-                    <link href="/aden/static/src/css/account_invoice.css" rel="stylesheet"/>
-                    <div class="logo">
-                        <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"/>
-                    </div>
-                    <div class="invoice_info">
-                        <div class="title">
-                            <div>
-                                <h2>
-                                    Factura Electrónica #
-                                    <span t-field="o.number"/>
-                                </h2>
-                            </div>
-                            <div>
-                                Ver.
-                                <span t-field="o.company_id.version_hacienda"/>
-                            </div>
-                        </div>
-                        <div class="electronic_invoice">
-                            <div>
-                                Número Consecutivo:
-                                <span t-field="o.number_electronic"/>
-                            </div>
-                            <div>
-                                Clave:
-                                <span t-field="o.number_electronic"/>
-                            </div>
-                        </div>
-                        <div class="extra_info">
-                            <div>
-                                <span>Tipo Cambio:</span>
-                                Compra:
-                                <span t-field="o.rate_id.original_rate_2"/>
-                                Venta
-                                <span t-field="o.rate_id.original_rate"/>
-                            </div>
-                            <div>
-                                <span>Fecha de Facturación:</span>
-                                <span t-field="o.date_invoice"/>
-                            </div>
-                            <div>
-                                <span>Fecha de Vencimiento:</span>
-                                <span t-field="o.date_due"/>
-                            </div>
-                            <div>
-                                <span>Condición de Venta:</span>
-                                <span t-field="o.payment_term_id"/>
-                            </div>
-                            <div>
-                                <span>Medio de Pago:</span>
-                                <span t-field="o.payment_methods_id"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="page">
                     <link href="/aden/static/src/css/account_invoice.css" rel="stylesheet"/>
                     <div class="contact_header">
-                        <div class="contact_info">
+                        <div class="contact_info border-left">
                             <div>
-                                <bold>Emisor:</bold>
-                                <span t-field="o.company_id"/>
+                                <div class="bold">Emisor:</div>
+                                <span class="bold blue" t-field="o.company_id"/>
                             </div>
                             <div>
-                                <bold>Razón Social:</bold>
+                                <div class="bold">Razón Social:</div>
                                 <span t-field="o.company_id.commercial_name"/>
                             </div>
                             <div>
-                                <bold>Cédula:</bold>
+                                <div class="bold">Cédula:</div>
                                 <span t-field="o.company_id.vat"/>
                             </div>
                             <div>
-                                <bold>Teléfono:</bold>
+                                <div class="bold">Teléfono:</div>
                                 <span t-field="o.company_id.phone"/>
                             </div>
                             <div>
-                                <bold>Correo Eléctronico:</bold>
-                                <span t-field="o.company_id.email"/>
+                                <div class="bold">Correo Eléctronico:</div>
+                                <span class="blue" t-field="o.company_id.email"/>
                             </div>
                             <div>
-                                <bold>Dirección:</bold>
+                                <div class="bold">Dirección:</div>
                                 <span t-field="o.company_id.street"/>
                             </div>
                         </div>
-                        <div class="contact_info">
+                        <div class="contact_info border-left">
                             <div>
-                                <bold>Receptor:</bold>
-                                <span t-field="o.partner_id"/>
+                                <div class="bold">Receptor:</div>
+                                <span class="blue bold" t-field="o.partner_id"/>
                             </div>
                             <div>
-                                <bold>Nombre Comercial:</bold>
+                                <div class="bold">Nombre Comercial:</div>
                                 <span t-field="o.partner_id.commercial_name"/>
                             </div>
                             <div>
-                                <bold>Cédula:</bold>
+                                <div class="bold">Cédula:</div>
                                 <span t-field="o.partner_id.vat"/>
                             </div>
                             <div>
-                                <bold>Teléfono:</bold>
+                                <div class="bold">Teléfono:</div>
                                 <span t-field="o.partner_id.phone"/>
                             </div>
                             <div>
-                                <bold>Correo Eléctronico:</bold>
-                                <span t-field="o.partner_id.email"/>
+                                <div class="bold">Correo Eléctronico:</div>
+                                <span class="blue" t-field="o.partner_id.email"/>
                             </div>
                             <div>
-                                <bold>Dirección:</bold>
+                                <div class="bold">Dirección:</div>
                                 <span t-field="o.partner_id.street"/>
                             </div>
                         </div>
@@ -130,16 +143,16 @@
                         <h3>Detalles de la Factura</h3>
                         <table class="invoice_lines">
                             <tr>
-                                <th style="width: 7%;">Cod</th>
-                                <th style="width: 16%;">Item</th>
-                                <th style="width: 11%;">Detalle</th>
-                                <th style="width: 8%;">Und</th>
-                                <th style="width: 7%;" class="number">Cant</th>
-                                <th style="width: 9%;" class="number">$ Precio</th>
-                                <th style="width: 13%;" class="number">$ Monto Total</th>
-                                <th style="width: 12%;" class="number">$ Sub-Total</th>
-                                <th style="width: 7%;" class="number">$ IVA</th>
-                                <th style="width: 10%;" class="number">$ Total</th>
+                                <th style="text-align: center; width: 7%;">Cod</th>
+                                <th style="text-align: center; width: 16%;">Item</th>
+                                <th style="text-align: center; width: 11%;">Detalle</th>
+                                <th style="text-align: center; width: 8%;">Und</th>
+                                <th style="text-align: center; width: 7%;">Cant</th>
+                                <th style="text-align: center; width: 9%;">$ Precio</th>
+                                <th style="text-align: center; width: 13%;">$ Monto Total</th>
+                                <th style="text-align: center; width: 12%;">$ Sub-Total</th>
+                                <th style="text-align: center; width: 7%;">$ IVA</th>
+                                <th style="text-align: center; width: 10%;" class="total-col">$ Total</th>
                             </tr>
                             <t t-foreach="o.invoice_line_ids" t-as="line">
                                 <tr>
@@ -169,17 +182,18 @@
                                     <td class="number">
                                         <span t-field="line.amount_tax"/>
                                     </td>
-                                    <td class="number">
+                                    <td class="number total-col">
                                         <span t-field="line.amount_total"/>
                                     </td>
                                 </tr>
                             </t>
                         </table>
-                        <div>
+                        <br/>
+                        <div class="resume">
                             <table>
                                 <tr>
                                     <th>Total Venta</th>
-                                    <td>
+                                    <td class="number">
                                         <span t-field="o.amount_untaxed"/>
                                     </td>
                                 </tr>
@@ -195,14 +209,14 @@
                                 </tr>
                                 <tr>
                                     <th>Total IVA</th>
-                                    <td>
+                                    <td class="number">
                                         <span t-field="o.amount_tax"/>
                                     </td>
                                 </tr>
                                 <div>
                                     <tr>
                                         <th>Total</th>
-                                        <td>
+                                        <td class="number">
                                             <span t-field="o.amount_total"/>
                                         </td>
                                     </tr>
@@ -210,13 +224,13 @@
                             </table>
                         </div>
                     </div>
-                    <div>
-                        <div>
+                    <div class="bottom-info">
+                        <div class="border-left">
                             <div>Detalles:</div>
                             <!-- TODO -->
                         </div>
                         <div>
-                            <bold>Total CRC:</bold>
+                            <div class="bold">Total CRC:</div>
                             <!-- TODO -->
                         </div>
                         <div>
