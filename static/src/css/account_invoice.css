@@ -101,6 +101,10 @@
     width: 100%;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .details > h3 {
     font-weight: bold;
     color: #555555;

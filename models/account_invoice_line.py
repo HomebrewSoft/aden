@@ -11,6 +11,9 @@ class InvoiceLine(models.Model):
     amount_total = fields.Float(
         compute='_get_amount_total',
     )
+    amount_discounted = fields.Float(
+        compute='_get_amount_discounted',
+    )
 
     @api.depends('invoice_line_tax_ids', 'price_subtotal')
     def _get_amount_tax(self):
@@ -21,3 +24,8 @@ class InvoiceLine(models.Model):
     def _get_amount_total(self):
         for record in self:
             record.amount_total = record.price_subtotal + record.amount_tax
+
+    @api.depends('discount', 'price_unit', 'quantity')
+    def _get_amount_discounted(self):
+        for record in self:
+            record.amount_discounted = record.discount / 100 * record.price_unit * record.quantity

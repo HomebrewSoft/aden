@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'ADEN',
-    'version': '0.1.0',
+    'version': '0.2.0',
     'author': 'HomebrewSoft',
     'website': 'https://github.com/HomebrewSoft/aden',
     'depends': [
