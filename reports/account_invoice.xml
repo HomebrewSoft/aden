@@ -137,7 +137,56 @@
                         </div>
                     </div>
                     <div class="iban">
-                        <!-- TODO TABLA IBAN -->
+                        <table>
+                            <tr>
+                                <th>Entidad</th>
+                                <th>Cuenta Corriente</th>
+                                <th>Cuenta IBAN</th>
+                                <th>Moneda</th>
+                            </tr>
+                            <tr>
+                                <td>BAC CREDOMATIC</td>
+                                <td>903718989</td>
+                                <td>CR77010200009037189891</td>
+                                <td>Dolares</td>
+                            </tr>
+                            <tr>
+                                <th>Entidad</th>
+                                <th>Cuenta Corriente</th>
+                                <th>Cuenta IBAN</th>
+                                <th>Moneda</th>
+                            </tr>
+                            <tr>
+                                <td>BAC CREDOMATIC</td>
+                                <td>904175577</td>
+                                <td>CR02010200009041755770</td>
+                                <td>Colones</td>
+                            </tr>
+                            <tr>
+                                <th>Entidad</th>
+                                <th>Cuenta Corriente</th>
+                                <th>Cuenta IBAN</th>
+                                <th>Moneda</th>
+                            </tr>
+                            <tr>
+                                <td>BANCO PROMERICA</td>
+                                <td>40000003300386</td>
+                                <td>CR07011610400033003869</td>
+                                <td>Dolares</td>
+                            </tr>
+                            <tr>
+                                <th>Entidad</th>
+                                <th>Cuenta Corriente</th>
+                                <th>Cuenta IBAN</th>
+                                <th>Moneda</th>
+                            </tr>
+                            <tr>
+                                <td>BANCO PROMERICA</td>
+                                <td>30000003300378</td>
+                                <td>CR3011610300033003780</td>
+                                <td>Colones</td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="details">
                         <h3>Detalles de la Factura</h3>

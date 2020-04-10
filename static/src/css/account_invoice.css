@@ -96,7 +96,7 @@
 }
 
 .details {
-    padding-top: 250px;
+    padding-top: 20px;
     text-align: center;
     width: 100%;
 }
@@ -180,4 +180,23 @@ td {
 .bottom-info > div{
     font-size: 15px;
     margin: 10px 0 10px 0;
+}
+
+.iban {
+    padding-top: 150px;
+}
+
+.iban > table {
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+
+.iban td {
+    background-color: #EEEEEE;
+}
+
+.iban th {
+    text-align: center;
+    background-color: #D6EAF8;
 }
