@@ -284,7 +284,7 @@
                             <!-- TODO -->
                         </div>
                         <div class="bold">
-                            Total CRC:
+                            Total:
                             <span t-field="o.amount_total_crc"/>
                         </div>
                         <div>
