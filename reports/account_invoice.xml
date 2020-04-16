@@ -36,10 +36,7 @@
                     <div>
                         <div class="extra_info">
                             <div class="bold">Tipo Cambio:</div>
-                            Compra:
-                            <span t-field="o.rate_id.original_rate_2"/>
-                            Venta
-                            <span t-field="o.rate_id.original_rate"/>
+                            <span t-esc="o.rate_id.rate and '{0:,.2f}'.format(o.rate_id.rate) or 1.00"/>
                         </div>
                         <div class="extra_info">
                             <div class="bold">Fecha de Facturación:</div>
