@@ -16,7 +16,7 @@
                         <div>
                             <h2>
                                 Factura Electrónica #
-                                <span t-field="o.number"/>
+                                <span t-esc="o.number_electronic and o.number_electronic[21:41]"/>
                             </h2>
                         </div>
                         <div>
