@@ -278,7 +278,7 @@
                     <div class="bottom-info">
                         <div class="border-left">
                             <div>Detalles:</div>
-                            <!-- TODO -->
+                            <span t-field="o.comment"/>
                         </div>
                         <div class="bold">
                             Total:
