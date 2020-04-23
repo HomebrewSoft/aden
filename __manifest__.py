@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'ADEN',
-    'version': '1.4.1',
+    'version': '1.5.0',
     'author': 'HomebrewSoft',
     'website': 'https://github.com/HomebrewSoft/aden',
     'depends': [
         'account',
         'fecr',
+        'sale',
+        'sale_stock',
     ],
     'data': [
         # security

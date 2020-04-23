@@ -1,80 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="web.external_layout_boxed">
-        <div class="header o_boxed_header">
-            <div class="header-container">
-                <link href="/aden/static/src/css/account_invoice.css" rel="stylesheet"/>
-                <style type="text/css">
-                    .logo23 {
-                        background-image: url("/web/binary/company_logo");
-                        background-repeat: no-repeat;
-                    }
-                </style>
-                <div class="logo2 logo23"/>
-                <div class="invoice_info">
-                    <div class="title blue">
-                        <div>
-                            <h2>
-                                Factura Electrónica #
-                                <span t-esc="o.number_electronic and o.number_electronic[21:41]"/>
-                            </h2>
-                        </div>
-                        <div>
-                            Ver.
-                            <span t-field="o.company_id.version_hacienda"/>
-                        </div>
-                    </div>
-                    <div class="electronic_invoice">
-                        Número Consecutivo:
-                        <!-- TODO -->
-                        <span t-esc="o.number_electronic and o.number_electronic[21:41]"/>
-                    </div>
-                    <div class="electronic_invoice">
-                        Clave:
-                        <span t-field="o.number_electronic"/>
+    <template id="sale_stock.report_invoice_document_inherit_sale_stock" inherit_id="account.report_invoice_document" primary="True"/>
+    <template id="sale.report_invoice_layouted" inherit_id="account.report_invoice_document" primary="True"/>
+    <template id="account.report_invoice_document_with_payments" inherit_id="account.report_invoice_document" primary="True"/>
+
+    <template id="report_header">
+        <div class="header">
+            <link href="/aden/static/src/css/account_invoice.css" rel="stylesheet"/>
+            <img class="logo" t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"/>
+            <div class="invoice_info">
+                <div class="title blue">
+                    <div>
+                        <h2>
+                            Factura Electrónica #
+                            <span t-esc="o.number_electronic and o.number_electronic[21:41]"/>
+                        </h2>
                     </div>
                     <div>
-                        <div class="extra_info">
-                            <div class="bold">Tipo Cambio:</div>
-                            <span t-esc="o.rate_id.rate and '{0:,.2f}'.format(o.rate_id.rate) or 1.00"/>
-                        </div>
-                        <div class="extra_info">
-                            <div class="bold">Fecha de Facturación:</div>
-                            <span t-field="o.date_invoice"/>
-                        </div>
-                        <div class="extra_info">
-                            <div class="bold">Fecha de Vencimiento:</div>
-                            <span t-field="o.date_due"/>
-                        </div>
-                        <div class="extra_info">
-                            <div class="bold">Condición de Venta:</div>
-                            <span t-field="o.payment_term_id"/>
-                        </div>
-                        <div class="extra_info">
-                            <div class="bold">Medio de Pago:</div>
-                            <span t-field="o.payment_methods_id"/>
-                        </div>
+                        Ver.
+                        <span t-field="o.company_id.version_hacienda"/>
+                    </div>
+                </div>
+                <div class="electronic_invoice">
+                    Número Consecutivo:
+                    <!-- TODO -->
+                    <span t-esc="o.number_electronic and o.number_electronic[21:41]"/>
+                </div>
+                <div class="electronic_invoice">
+                    Clave:
+                    <span t-field="o.number_electronic"/>
+                </div>
+                <div>
+                    <div class="extra_info">
+                        <div class="bold">Tipo Cambio:</div>
+                        <span t-esc="o.rate_id.rate and '{0:,.2f}'.format(o.rate_id.rate) or 1.00"/>
+                    </div>
+                    <div class="extra_info">
+                        <div class="bold">Fecha de Facturación:</div>
+                        <span t-field="o.date_invoice"/>
+                    </div>
+                    <div class="extra_info">
+                        <div class="bold">Fecha de Vencimiento:</div>
+                        <span t-field="o.date_due"/>
+                    </div>
+                    <div class="extra_info">
+                        <div class="bold">Condición de Venta:</div>
+                        <span t-field="o.payment_term_id"/>
+                    </div>
+                    <div class="extra_info">
+                        <div class="bold">Medio de Pago:</div>
+                        <span t-field="o.payment_methods_id"/>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="article o_report_layout_boxed">
-            <t t-raw="0"/>
-        </div>
-
-        <div class="footer o_boxed_footer"></div>
     </template>
 
-    <template id="aden_report_invoice_document" inherit_id="account.report_invoice_document">
-        <t t-call="web.external_layout" position="replace">
-            <t t-call="web.external_layout">
-                <div id="total">
-                    <div>
-                        <table/>
-                    </div>
-                </div>
-                <div class="page">
+    <template id="report_footer">
+        <div class="footer">
+            Emitida conforme lo establecido en la resolución de Facturación Electrónica, N° DGT-R-033-2019 del 20 de junio del dos mil diecinueve de la Dirección General de Tributación
+        </div>
+    </template>
+
+    <template id="aden.custom_format">
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id"></t>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"></t>
+        </t>
+        <t t-call="aden.report_header"/>
+        <t t-raw="0"/>
+        <t t-call="aden.report_footer"/>
+    </template>
+
+    <template id="account.report_invoice_document">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="aden.custom_format">
+                <div class="article">
                     <link href="/aden/static/src/css/account_invoice.css" rel="stylesheet"/>
                     <div class="contact_header">
                         <div class="contact_info border-left">
@@ -289,9 +292,6 @@
                             <span t-field="o.invoice_amount_text"/>
                         </div>
                     </div>
-                </div>
-                <div class="footer o_boxed_footer">
-                    Emitida conforme lo establecido en la resolución de Facturación Electrónica, N° DGT-R-033-2019 del 20 de junio del dos mil diecinueve de la Dirección General de Tributación
                 </div>
             </t>
         </t>
