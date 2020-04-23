@@ -36,7 +36,7 @@ class Invoice(models.Model):
     @api.depends('amount_total', 'currency_id')
     def _get_amount_total_crc(self):
         for record in self:
-            currency_id = self.currency_id.with_context(date=record.date_invoice)
+            currency_id = record.currency_id.with_context(date=record.date_invoice)
             record.amount_total_crc = currency_id.compute(record.amount_total, record.company_id.currency_id)
 
     @api.depends('invoice_line_ids')
