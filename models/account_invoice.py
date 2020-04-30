@@ -47,4 +47,4 @@ class Invoice(models.Model):
     @api.depends('amount_untaxed', 'amount_discounted')
     def _get_amount_subtotal(self):
         for record in self:
-            record.amount_subtotal = record.amount_untaxed - record.amount_discounted
+            record.amount_subtotal = record.amount_untaxed + record.amount_discounted

@@ -192,30 +192,18 @@
                         <h3>Detalles de la Factura</h3>
                         <table class="invoice_lines">
                             <tr>
-                                <th style="text-align: center; width: 7%;">Cod</th>
                                 <th style="text-align: center; width: 16%;">Item</th>
-                                <th style="text-align: center; width: 11%;">Detalle</th>
-                                <th style="text-align: center; width: 8%;">Und</th>
                                 <th style="text-align: center; width: 7%;">Cant</th>
                                 <th style="text-align: center; width: 13%;">% Descuento</th>
-                                <th style="text-align: center; width: 9%;">$ Precio</th>
-                                <th style="text-align: center; width: 12%;">$ Sub-Total</th>
+                                <th style="text-align: center; width: 22%;">$ Precio</th>
+                                <th style="text-align: center; width: 25%;">$ Sub-Total</th>
                                 <th style="text-align: center; width: 7%;">$ IVA</th>
                                 <th style="text-align: center; width: 10%;" class="total-col">$ Total</th>
                             </tr>
                             <t t-foreach="o.invoice_line_ids" t-as="line">
                                 <tr>
                                     <td>
-                                        <span t-field="line.product_id.default_code"/>
-                                    </td>
-                                    <td>
                                         <span t-field="line.product_id.name"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="line.name"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="line.product_id.uom_id"/>
                                     </td>
                                     <td class="number">
                                         <span t-field="line.quantity"/>
@@ -244,7 +232,7 @@
                                 <tr>
                                     <th>Total Venta</th>
                                     <td class="number">
-                                        <span t-field="o.amount_untaxed"/>
+                                        <span t-field="o.amount_subtotal"/>
                                     </td>
                                 </tr>
                                 <!-- TODO -->
@@ -258,7 +246,7 @@
                                 <tr>
                                     <th>Sub-Total</th>
                                     <td class="number">
-                                        <span t-field="o.amount_subtotal"/>
+                                        <span t-field="o.amount_untaxed"/>
                                     </td>
                                 </tr>
                                 <tr>
