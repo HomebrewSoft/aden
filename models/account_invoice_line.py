@@ -5,13 +5,13 @@ from odoo import api, fields, models
 class InvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
-    amount_tax = fields.Float(
+    amount_tax = fields.Monetary(
         compute='_get_amount_tax',
     )
-    amount_total = fields.Float(
+    amount_total = fields.Monetary(
         compute='_get_amount_total',
     )
-    amount_discounted = fields.Float(
+    amount_discounted = fields.Monetary(
         compute='_get_amount_discounted',
     )
 

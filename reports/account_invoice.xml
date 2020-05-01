@@ -195,9 +195,9 @@
                                 <th style="text-align: center; width: 16%;">Item</th>
                                 <th style="text-align: center; width: 7%;">Cant</th>
                                 <th style="text-align: center; width: 13%;">% Descuento</th>
-                                <th style="text-align: center; width: 22%;">$ Precio</th>
-                                <th style="text-align: center; width: 25%;">$ Sub-Total</th>
-                                <th style="text-align: center; width: 7%;">$ IVA</th>
+                                <th style="text-align: center; width: 22%;">Precio</th>
+                                <th style="text-align: center; width: 25%;">Sub-Total</th>
+                                <th style="text-align: center; width: 7%;">IVA</th>
                                 <th style="text-align: center; width: 10%;" class="total-col">$ Total</th>
                             </tr>
                             <t t-foreach="o.invoice_line_ids" t-as="line">
