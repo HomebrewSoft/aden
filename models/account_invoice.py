@@ -31,6 +31,7 @@ class Invoice(models.Model):
                     ('write_date', '<=', record.date_invoice),
                 ],
                 order='write_date DESC',
+                limit=1,
             )
 
     @api.depends('amount_total', 'currency_id')
