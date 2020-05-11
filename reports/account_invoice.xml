@@ -280,6 +280,16 @@
                             Monto en Letras:
                             <span t-field="o.invoice_amount_text"/>
                         </div>
+                        <t t-if="o.tipo_documento in ['NC', 'ND']">
+                            <div>
+                                Motivo:
+                                <span t-field="o.reference_code_id"/>
+                            </div>
+                            <div>
+                                Documento de referencia:
+                                <span t-field="o.invoice_id"/>
+                            </div>
+                        </t>
                     </div>
                 </div>
             </t>
