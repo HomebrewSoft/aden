@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="sale_stock.report_invoice_document_inherit_sale_stock" inherit_id="account.report_invoice_document" primary="True"/>
     <template id="sale.report_invoice_layouted" inherit_id="account.report_invoice_document" primary="True"/>
@@ -34,7 +34,7 @@
                 <div>
                     <div class="extra_info">
                         <div class="bold">Tipo Cambio:</div>
-                        <span t-esc="o.rate_id.rate and '{0:,.2f}'.format(o.rate_id.rate) or 1.00"/>
+                        <span t-field="o.rate"/>
                     </div>
                     <div class="extra_info">
                         <div class="bold">Fecha de Facturación:</div>

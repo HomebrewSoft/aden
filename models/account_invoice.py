@@ -5,10 +5,6 @@ from odoo import api, fields, models
 class Invoice(models.Model):
     _inherit = 'account.invoice'
 
-    rate_id = fields.Many2one(
-        comodel_name='res.currency.rate',
-        compute='_get_rate_id',
-    )
     amount_total_crc = fields.Monetary(
         currency_field='currency_id',
         compute='_get_amount_total_crc',
@@ -21,18 +17,6 @@ class Invoice(models.Model):
         currency_field='currency_id',
         compute='_get_amount_subtotal',
     )
-
-    @api.depends('date_invoice', 'currency_id')
-    def _get_rate_id(self):
-        for record in self:
-            record.rate_id = self.env['res.currency.rate'].search(
-                [
-                    ('currency_id', '=', record.currency_id.id),
-                    ('write_date', '<=', record.date_invoice),
-                ],
-                order='write_date DESC',
-                limit=1,
-            )
 
     @api.depends('amount_total', 'currency_id')
     def _get_amount_total_crc(self):
